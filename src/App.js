@@ -5,7 +5,7 @@ import routes from './config/routes/routes';
 function App() {
   return (
     <BrowserRouter>
-    <Suspense>
+    <Suspense fallback={<div><h1>Loading..</h1></div>}>
       <Routes>
         {
           routes.map((route)=>(
