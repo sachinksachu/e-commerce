@@ -1,10 +1,11 @@
 /**
  * Imports
  */
-import React, {useEffect, useState } from "react";
-import ProductList from "../components/products/ProductLis";
+import React, { Suspense, useEffect, useState } from "react";
 import ApiCall from "../api/ApiCall";
 import APIURL from "../api/ApiUrls";
+
+const ProductList = React.lazy(() => import('../components/products/ProductList'));
 
 /**
  * 
@@ -32,7 +33,9 @@ const Products = () => {
     return (
         <div>
             <h1>Products</h1>
-            <ProductList products={products}/>
+            <Suspense fallback={<div><p>Loading..</p></div>}>
+                <ProductList list={products}/>
+            </Suspense>
         </div>
     )
 }
