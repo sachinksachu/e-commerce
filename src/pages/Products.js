@@ -4,7 +4,7 @@
 import React, { Suspense, useEffect, useState } from "react";
 import ApiCall from "../api/ApiCall";
 import APIURL from "../api/ApiUrls";
-import LoadingCard from "../components/products/LoadingCard";
+import LoadingCard from "../components/common/LoadingCard";
 
 import "../css/Product.css";
 

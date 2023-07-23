@@ -1,0 +1,18 @@
+.image--view{
+    display: flex;
+    margin: auto;
+    width: 70%;
+    height: 70%;
+}
+
+.image--view > img
+{
+    margin: auto;
+    width: 70%;
+    height: 100%;
+    object-fit: cover;
+}
+
+.hide-image{
+    display: none;
+}

@@ -2,7 +2,7 @@
  * Imports
  */
 import React from "react";
-import Card from "./Card";
+import Card from "../common/Card";
 import "../../css/Product.css";
 
 /**
