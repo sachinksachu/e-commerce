@@ -3,7 +3,7 @@
  */
 import React from "react";
 import Card from "./Card";
-import LoadingCard from "./LoadingCard";
+import "../../css/Product.css";
 
 /**
  * 
@@ -16,12 +16,12 @@ const ProductList = ({ list }) => {
      * DOM
      */
     return (
-        <div>
+        <div className="product-list__main">
             {
             list &&
                 list.map((item) => (
-                    // <Card item={item} key={item.id}/>)
-                    <LoadingCard/>)
+                    <Card item={item} key={item.id}/>)
+                    
                 )
             }
         </div>

@@ -1,0 +1,24 @@
+.card--view {
+    display: flex;
+    width: 100%;
+    align-items: center;
+    justify-content: center;
+}
+
+.card--content{
+    width: 50%;
+    margin: auto;
+    display: flex;
+    flex-direction: column;
+}
+
+#card--content__thumbnail{
+    width: 50%;
+    margin: auto;
+}
+
+#card--content__description {
+    overflow: hidden;
+    text-overflow: ellipsis;
+    white-space: nowrap;
+}

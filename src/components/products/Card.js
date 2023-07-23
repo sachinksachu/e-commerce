@@ -3,6 +3,8 @@
  */
 import React from "react";
 
+import "../../css/Card.css";
+
 /**
  * 
  * @param {array} item The item
@@ -14,13 +16,14 @@ const Card = ({ item }) => {
      * DOM
      */
     return (
-        <div>
+        <div className="card--view">
             {
                 item &&
-                <div key={item.id}>
-                    <h3>{item.title}</h3>
-                    <p>{item.description}</p>
-                    <p>{item.price}</p>
+                <div key={item.id} className="card--content">
+                    <img src={item.thumbnail} alt={item.title} id="card--content__thumbnail"/>
+                    <h3 id="card--content__title">{item.title}</h3>
+                    <p id="card--content__description">{item.description}</p>
+                    <p id="card--content__price">{item.price}</p>
                 </div>
             }
         </div>
