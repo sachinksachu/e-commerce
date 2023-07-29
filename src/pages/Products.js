@@ -4,11 +4,11 @@
 import React, { Suspense, useEffect, useState } from "react";
 import ApiCall from "../api/ApiCall";
 import APIURL from "../api/ApiUrls";
-import LoadingCard from "../components/common/LoadingCard";
+import ProductList from '../components/products/ProductList';
 
 import "../css/Product.css";
 
-const ProductList = React.lazy(() => import('../components/products/ProductList'));
+// const ProductList = React.lazy(() => import('../components/products/ProductList'));
 
 /**
  * 
@@ -18,17 +18,44 @@ const Products = () => {
     /**
      * States
      */
-    const [products, setProducts] = useState(null)
+    const [products, setProducts] = useState([]);
+    const [isLoading, setIsLoading] = useState(true);
+    const [error, setError] = useState(null);
+    const [count, setCount] = useState(0);
 
     /**
      * UseEffects
      */
     useEffect(() => {
-        (async () => {
-            const data = await ApiCall(APIURL.GetAllProducts, "GET");
-            setProducts(data.products);
-        })();
+        fetchData();
     }, [])
+
+    const fetchData = async () => { 
+        setIsLoading(true);
+        setError(null);
+        const data = await ApiCall(`${APIURL.GetAllProducts}?limit=10&skip=${count}`, "GET");
+
+        try {
+            setProducts(prevItems => [...prevItems, ...data.products]);
+            setCount(prevPage => prevPage + 10);
+        } catch (error) {
+            setError(error);
+        } finally {
+            setIsLoading(false);
+        }
+    };
+
+    const handleScroll = () => {
+        if (window.innerHeight + document.documentElement.scrollTop !== document.documentElement.offsetHeight || isLoading) {
+          return;
+        }
+        fetchData();
+      };
+      
+      useEffect(() => {
+        window.addEventListener('scroll', handleScroll);
+        return () => window.removeEventListener('scroll', handleScroll);
+      }, [isLoading]);
 
     /**
      * DOM
@@ -36,9 +63,8 @@ const Products = () => {
     return (
         <div className="products__main">
             <h1>Products</h1>
-            <Suspense fallback={<LoadingCard/>}>
                 <ProductList list={products}/>
-            </Suspense>
+            {isLoading && <p>Loading...</p>}
         </div>
     )
 }

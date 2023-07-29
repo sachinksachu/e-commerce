@@ -5,7 +5,7 @@ import routes from './config/routes/routes';
 function App() {
   return (
     <BrowserRouter>
-    <Suspense fallback={<div><h1>Loading..</h1></div>}>
+    {/* <Suspense fallback={<div><h1>Loading..</h1></div>}> */}
       <Routes>
         {
           routes.map((route)=>(
@@ -13,7 +13,7 @@ function App() {
           ))
         }
       </Routes>
-    </Suspense>
+    {/* </Suspense> */}
     </BrowserRouter>
   );
 }

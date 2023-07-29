@@ -1,7 +1,7 @@
 /**
  * Imports
  */
-import React, { useCallback, useState } from "react";
+import React, {useState } from "react";
 
 import loadingImage from "../../assets/loading-image.png"
 import "../../css/Image.css";
@@ -9,7 +9,7 @@ import "../../css/Image.css";
 
 /**
  * 
- * @param {url} item The image url
+ * @param {url} url The image url
  * @returns 
  */
 const Image = ({ url }) => {

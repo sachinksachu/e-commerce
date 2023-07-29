@@ -1,8 +1,9 @@
 /**
  * Imports
  */
-import React from "react";
+import React,{Suspense} from "react";
 import Card from "../common/Card";
+import LoadingCard from "../common/LoadingCard";
 import "../../css/Product.css";
 
 /**
@@ -18,10 +19,13 @@ const ProductList = ({ list }) => {
     return (
         <div className="product-list__main">
             {
-            list &&
+                list &&
                 list.map((item) => (
-                    <Card item={item} key={item.id}/>)
-                    
+                    <Suspense fallback={<LoadingCard />}>
+                        <Card item={item} key={item.id} />
+                    </Suspense>
+                )
+
                 )
             }
         </div>
