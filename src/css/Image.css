@@ -8,7 +8,7 @@
 .image--view > img
 {
     margin: auto;
-    width: 100%;
+    width: 75%;
     height: 100%;
     object-fit: fill;
     aspect-ratio: 1;
