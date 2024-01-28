@@ -104,7 +104,6 @@ const Products = () => {
       }
     return (
         <div className="products__main">
-            <h1>Products</h1>
             <SearchBar keyword={searchKeyword} onSearch={onSearch}/>
             <Profiler id="productList" onRender={onRender}>
                 <ProductList list={products} />
