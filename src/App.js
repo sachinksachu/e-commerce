@@ -1,20 +1,18 @@
-import { Suspense } from 'react';
-import { BrowserRouter, Route, Routes } from 'react-router-dom';
-import routes from './config/routes/routes';
+import AppContent from './components/layouts/AppContent';
+import AppHeader from './components/layouts/AppHeader';
+import AppSidebar from './components/layouts/AppSidebar';
+
+import "./css/App.css";
 
 function App() {
   return (
-    <BrowserRouter>
-    {/* <Suspense fallback={<div><h1>Loading..</h1></div>}> */}
-      <Routes>
-        {
-          routes.map((route)=>(
-             <Route path={route.path} Component={route.element} key={route.id}/>
-          ))
-        }
-      </Routes>
-    {/* </Suspense> */}
-    </BrowserRouter>
+    <div id="app">
+      <AppHeader />
+      <div id="app-content">
+        <AppSidebar />
+        <AppContent />
+      </div>
+    </div>
   );
 }
 

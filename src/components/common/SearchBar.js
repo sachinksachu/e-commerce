@@ -2,6 +2,7 @@
  * Imports
  */
 import React from "react";
+import PropTypes from 'prop-types'
 import "../../css/SearchBar.css";
 
 /**
@@ -21,5 +22,10 @@ const SearchBar = ({ keyword, onSearch }) => {
             </div>
         </div>
     )
+}
+
+SearchBar.propTypes = {
+    keyword : PropTypes.string,
+    onSearch : PropTypes.func
 }
 export default SearchBar;

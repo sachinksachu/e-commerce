@@ -3,6 +3,7 @@
  */
 import React from "react";
 import "../../css/LoadingCard.css"
+import { CImage } from "@coreui/react";
 
 /**
  * 
@@ -17,9 +18,7 @@ const LoadingCard = () => {
     return (
 
         <div className="Loading_card">
-            <div></div>
-            <div></div>
-            <div></div>
+            <CImage/>
         </div>
     )
 }

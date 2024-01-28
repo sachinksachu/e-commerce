@@ -21,7 +21,7 @@ const Card = ({ item }) => {
         <div className="card--view">
             {
                 item &&
-                <div key={item.id} className="card--content">
+                <div className="card--content">
                     {/* <img src={item.thumbnail} alt={item.title} id="card--content__thumbnail"/> */}
                     <Image url={item.thumbnail} id="card--content__thumbnail"/>
                     

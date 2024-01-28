@@ -1,7 +1,8 @@
 .products__main{
     display: flex;
-    justify-content: center;
     flex-direction: column;
+    overflow: auto;
+    width: 100%;
 }
 .product-list__main{
     display: flex;

@@ -1,13 +1,15 @@
 /**
  * Imports
  */
-import React, { Suspense, useEffect, useState } from "react";
+import React, { Suspense, useEffect, useState, useCallback, useMemo, Profiler } from "react";
 import ApiCall from "../api/ApiCall";
 import APIURL from "../api/ApiUrls";
 import ProductList from '../components/products/ProductList';
 
 import "../css/Product.css";
 import SearchBar from "../components/common/SearchBar";
+import { CSpinner, CBadge } from "@coreui/react";
+import Loader from "../components/common/Loader";
 
 // const ProductList = React.lazy(() => import('../components/products/ProductList'));
 
@@ -24,7 +26,7 @@ const Products = () => {
     const [error, setError] = useState(null);
     const [count, setCount] = useState(0);
     const [data, setData] = useState(null);
-    const [searchKeyword, setSearchKeyword] = useState(null);
+    const [searchKeyword, setSearchKeyword] = useState("");
 
     /**
      * UseEffects
@@ -32,6 +34,10 @@ const Products = () => {
     useEffect(() => {
         fetchData();
     }, [])
+
+    const handleSubmit = useCallback(()=>{
+
+    },[])
 
     const fetchData = async () => {
         setIsLoading(true);
@@ -65,7 +71,7 @@ const Products = () => {
         return () => window.removeEventListener('scroll', handleScroll);
       }, [isLoading]);
 
-    const onSearch = async (e) => {
+    const onSearch = useCallback(async(e) => {
         var text = e.target.value;
         setSearchKeyword(text);
         setIsLoading(true);
@@ -80,17 +86,31 @@ const Products = () => {
         } finally {
             setIsLoading(false);
         }
-    }
+    },[])
 
+    
+    // const cal = (x,y) =>{
+    //     return x*y;
+    // }
+    // const expCal = useMemo(()=> cal(500,9000),[])
     /**
      * DOM
      */
+
+    function onRender(id, phase, actualDuration, baseDuration, startTime, commitTime) {
+        // Aggregate or log render timings...
+        console.log("id:",id," phase:", phase, "actualDuration:", actualDuration, "baseDuration:", baseDuration,
+        "commitTime:", commitTime)
+      }
     return (
         <div className="products__main">
             <h1>Products</h1>
             <SearchBar keyword={searchKeyword} onSearch={onSearch}/>
-            <ProductList list={products} />
-            {isLoading && <p>Loading...</p>}
+            <Profiler id="productList" onRender={onRender}>
+                <ProductList list={products} />
+            </Profiler>
+            {isLoading ? <Loader/> : null }
+            
         </div>
     )
 }
